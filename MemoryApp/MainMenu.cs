@@ -12,8 +12,14 @@ namespace MemoryApp
 {
     public partial class MainMenu : Form
     {
-        Settings settings;
+        public Settings settings;
         Game game;
+
+        public enum Difficulties { EASY, NORMAL, HARD };
+
+        public Difficulties chosenDifficulty = Difficulties.EASY;
+       
+
         public MainMenu()
         {
             InitializeComponent();
@@ -43,6 +49,25 @@ namespace MemoryApp
             this.Hide();
             game = new Game(this);
             game.Show();
+        }
+
+        private void boxDiff_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (this.boxDiff.SelectedIndex)
+            {
+                case 0:
+                    this.chosenDifficulty = Difficulties.EASY;
+                    break;
+
+                case 1:
+                default:
+                    this.chosenDifficulty = Difficulties.NORMAL;
+                    break;
+
+                case 2:
+                    this.chosenDifficulty = Difficulties.HARD;
+                    break;
+            }
         }
     }
 }

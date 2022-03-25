@@ -13,12 +13,12 @@ namespace MemoryApp
     public partial class Settings : Form
     {
         bool isSaved;
+        
+        public int initShowTime = 15;  // in seconds
+        public double cardsShowTime = 1.5;  // in seconds
 
-        private int initShowTime = 3;  // in seconds
-        private double cardsShowTime = 1.5;  // in seconds
-
-        private int boardWidth = 1080;
-        private int boardHeight = 920;
+        public int boardWidth = 1080;
+        public int boardHeight = 920;
 
         public Settings()
         {
@@ -28,7 +28,7 @@ namespace MemoryApp
         private void saveSettings()
         {
             // Initial show time
-            initShowTime = trkInit.Value;
+            initShowTime = trkInit.Value*5;
 
             // Cards show time
             cardsShowTime = trkCard.Value/2.0;
@@ -46,11 +46,11 @@ namespace MemoryApp
         private void loadValues()
         {
             // Initial show time
-            this.lblInV.Text = initShowTime.ToString() + "s";
-            this.trkInit.Value = initShowTime;
+            this.lblInV.Text = initShowTime.ToString() + " s";
+            this.trkInit.Value = initShowTime/5;
 
             // Cards show time
-            this.lblCardV.Text = cardsShowTime.ToString() + "s";
+            this.lblCardV.Text = cardsShowTime.ToString() + " s";
             this.trkCard.Value = Convert.ToInt32(cardsShowTime * 2);
 
             //Board width
@@ -105,14 +105,14 @@ namespace MemoryApp
 
         private void trkInit_ValueChanged(object sender, EventArgs e)
         {
-            this.lblInV.Text = this.trkInit.Value.ToString() + "s";
+            this.lblInV.Text = (this.trkInit.Value * 5).ToString() + " s";
 
             isSaved = false;
         }
 
         private void trkCard_ValueChanged(object sender, EventArgs e)
         {
-            this.lblCardV.Text = (this.trkCard.Value/2.0).ToString() + "s";
+            this.lblCardV.Text = (this.trkCard.Value/2.0).ToString() + " s";
 
             isSaved = false;
         }

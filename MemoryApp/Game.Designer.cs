@@ -38,6 +38,7 @@ namespace MemoryApp
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.MinimumSize = new System.Drawing.Size(604, 495);
             this.Name = "Game";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Memory Game";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
             this.ResumeLayout(false);

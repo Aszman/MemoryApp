@@ -95,7 +95,7 @@ namespace MemoryApp
             this.trkInit.LargeChange = 2;
             this.trkInit.Location = new System.Drawing.Point(150, 38);
             this.trkInit.Margin = new System.Windows.Forms.Padding(2);
-            this.trkInit.Minimum = 1;
+            this.trkInit.Maximum = 12;
             this.trkInit.Name = "trkInit";
             this.trkInit.Size = new System.Drawing.Size(140, 45);
             this.trkInit.TabIndex = 5;
@@ -109,9 +109,9 @@ namespace MemoryApp
             this.lblInV.Location = new System.Drawing.Point(304, 41);
             this.lblInV.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInV.Name = "lblInV";
-            this.lblInV.Size = new System.Drawing.Size(30, 20);
+            this.lblInV.Size = new System.Drawing.Size(39, 20);
             this.lblInV.TabIndex = 6;
-            this.lblInV.Text = "3 s";
+            this.lblInV.Text = "15 s";
             // 
             // lblCards
             // 
@@ -238,6 +238,7 @@ namespace MemoryApp
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Settings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Memory Game";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Settings_FormClosing);
             this.Load += new System.EventHandler(this.Settings_Load);

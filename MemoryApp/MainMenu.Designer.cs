@@ -95,13 +95,14 @@ namespace MemoryApp
             this.boxDiff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.boxDiff.FormattingEnabled = true;
             this.boxDiff.Items.AddRange(new object[] {
-            "Easy",
-            "Normal",
-            "Hard"});
+            "Easy (12 tiles)",
+            "Normal (36 tiles)",
+            "Hard (108 tiles)"});
             this.boxDiff.Location = new System.Drawing.Point(209, 93);
             this.boxDiff.Name = "boxDiff";
             this.boxDiff.Size = new System.Drawing.Size(100, 21);
             this.boxDiff.TabIndex = 6;
+            this.boxDiff.SelectedIndexChanged += new System.EventHandler(this.boxDiff_SelectedIndexChanged);
             // 
             // MainMenu
             // 
@@ -120,6 +121,7 @@ namespace MemoryApp
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Memory Game";
             this.ResumeLayout(false);
             this.PerformLayout();
