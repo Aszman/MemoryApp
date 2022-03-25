@@ -115,6 +115,7 @@ namespace MemoryApp
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Location = new System.Drawing.Point(100, 100);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

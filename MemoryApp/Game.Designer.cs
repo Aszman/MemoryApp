@@ -36,6 +36,7 @@ namespace MemoryApp
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.MinimumSize = new System.Drawing.Size(604, 495);
             this.Name = "Game";
             this.Text = "Memory Game";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
