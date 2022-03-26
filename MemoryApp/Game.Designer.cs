@@ -29,7 +29,18 @@ namespace MemoryApp
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.timInit = new System.Windows.Forms.Timer(this.components);
+            this.timShow = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // timInit
+            // 
+            this.timInit.Tick += new System.EventHandler(this.timInit_Tick);
+            // 
+            // timShow
+            // 
+            this.timShow.Tick += new System.EventHandler(this.timShow_Tick);
             // 
             // Game
             // 
@@ -41,10 +52,15 @@ namespace MemoryApp
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Memory Game";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
+            this.ResizeEnd += new System.EventHandler(this.Game_ResizeEnd);
+            this.Resize += new System.EventHandler(this.Game_Resize);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer timInit;
+        private System.Windows.Forms.Timer timShow;
     }
 }

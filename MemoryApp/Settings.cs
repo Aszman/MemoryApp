@@ -18,11 +18,22 @@ namespace MemoryApp
         public double cardsShowTime = 1.5;  // in seconds
 
         public int boardWidth = 1080;
-        public int boardHeight = 920;
+        public int boardWidthMax = 1600;
+        public int boardWidthMin = 800;
+        
+        public int boardHeight = 720;
+        public int boardHeightMax = 900;
+        public int boardHeightMin = 600;
+
 
         public Settings()
         {
             InitializeComponent();
+            this.nudWidth.Maximum = boardWidthMax;
+            this.nudWidth.Minimum= boardWidthMin;
+
+            this.nudHeight.Maximum = boardHeightMax;
+            this.nudHeight.Minimum = boardHeightMin;
         }
 
         private void saveSettings()
@@ -94,11 +105,11 @@ namespace MemoryApp
         {
             isSaved = true;
 
-            lblBoardW.Text = "Board's width (" + nudWidth.Minimum.ToString()
-                    + "-" + nudWidth.Maximum.ToString() + "):";
+            lblBoardW.Text = "Board's width (" + boardWidthMin.ToString()
+                    + "-" + boardWidthMax.ToString() + "):";
 
-            lblBoardH.Text = "Board's height (" + nudHeight.Minimum.ToString()
-        + "-" + nudHeight.Maximum.ToString() + "):";
+            lblBoardH.Text = "Board's height (" + boardHeightMin.ToString()
+        + "-" + boardHeightMax.ToString() + "):";
 
             loadValues();
         }

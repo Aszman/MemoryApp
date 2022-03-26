@@ -95,9 +95,9 @@ namespace MemoryApp
             this.boxDiff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.boxDiff.FormattingEnabled = true;
             this.boxDiff.Items.AddRange(new object[] {
-            "Easy (12 tiles)",
-            "Normal (36 tiles)",
-            "Hard (108 tiles)"});
+            "Easy (12 cards)",
+            "Normal (36 cards)",
+            "Hard (80 cards)"});
             this.boxDiff.Location = new System.Drawing.Point(209, 93);
             this.boxDiff.Name = "boxDiff";
             this.boxDiff.Size = new System.Drawing.Size(100, 21);

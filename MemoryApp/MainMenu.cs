@@ -18,6 +18,7 @@ namespace MemoryApp
         public enum Difficulties { EASY, NORMAL, HARD };
 
         public Difficulties chosenDifficulty = Difficulties.EASY;
+        String playerName;
        
 
         public MainMenu()
@@ -46,6 +47,8 @@ namespace MemoryApp
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
+            playerName = txtName.Text;
+
             this.Hide();
             game = new Game(this);
             game.Show();

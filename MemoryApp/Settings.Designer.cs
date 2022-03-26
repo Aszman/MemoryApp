@@ -163,7 +163,7 @@ namespace MemoryApp
             this.nudWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.nudWidth.Location = new System.Drawing.Point(277, 132);
             this.nudWidth.Maximum = new decimal(new int[] {
-            1920,
+            1600,
             0,
             0,
             0});
@@ -197,7 +197,7 @@ namespace MemoryApp
             this.nudHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.nudHeight.Location = new System.Drawing.Point(277, 166);
             this.nudHeight.Maximum = new decimal(new int[] {
-            1080,
+            900,
             0,
             0,
             0});
