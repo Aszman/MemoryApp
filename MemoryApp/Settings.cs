@@ -13,8 +13,8 @@ namespace MemoryApp
     public partial class Settings : Form
     {
         bool isSaved;
-        
-        public int initShowTime = 15;  // in seconds
+       
+        public int initShowTime = 5;  // in seconds, normally 15 now for dev is set 5;
         public double cardsShowTime = 1.5;  // in seconds
 
         public int boardWidth = 1080;

@@ -12,8 +12,8 @@ namespace MemoryApp
 {
     public partial class Game : Form
     {
-        MainMenu menu;
-
+        readonly MainMenu menu;
+       
         Card[] cards;
         int hiddenTiles;
         int rows, columns;
@@ -21,29 +21,37 @@ namespace MemoryApp
         Card firstCard = null;
         Card secondCard = null;
 
+        bool isCardTurned = false;
+        bool isPaused = false;
+
+        const int bottomSectionHeight = 120;
 
         FormWindowState? lastWindowState;
 
         public Game(MainMenu owner)
         {
             menu = owner;
+
             InitializeComponent();
+
+
             this.Width = menu.settings.boardWidth;
-            this.Height = menu.settings.boardHeight;
-            this.MaximumSize = new Size(menu.settings.boardWidthMax, menu.settings.boardHeightMax);
-            this.MinimumSize = new Size(menu.settings.boardWidthMin, menu.settings.boardHeightMin);
+            this.Height = menu.settings.boardHeight + bottomSectionHeight;
+            this.MaximumSize = new Size(menu.settings.boardWidthMax, menu.settings.boardHeightMax + bottomSectionHeight);
+            this.MinimumSize = new Size(menu.settings.boardWidthMin, menu.settings.boardHeightMin + bottomSectionHeight);
 
             InitializeTiles();
             ShuffleTiles();
+            setObjectsLocation();
+            
+        }
+
+        private void setObjectsLocation()
+        {
+            this.lblLine.Location = new Point(0, Height - bottomSectionHeight);
+            this.boxPause.Location = new Point((Width - boxPause.Width) / 2, Height - bottomSectionHeight + 20) ;
+
             SetTilesLocationSize();
-
-            if (menu.settings.initShowTime != 0)
-            {
-                this.timInit.Interval = menu.settings.initShowTime * 1000;
-                this.timInit.Enabled = true;
-            }
-
-            this.timShow.Interval = Convert.ToInt32(menu.settings.cardsShowTime * 1000);
         }
 
         private void InitializeTiles()
@@ -82,10 +90,11 @@ namespace MemoryApp
                     {
                         newCard.Text = (index / 2).ToString();
                         newCard.Enabled = false;
+                        isCardTurned = true;
                     }
 
-                    newCard.Font = new Font(newCard.Font.Name, 12F);
-                    newCard.TabStop = false;
+                    //newCard.Font = new Font(newCard.Font.Name, 12F);
+                    //newCard.TabStop = false;
                     newCard.Click += new System.EventHandler(this.Card_Click);
                     cards[index] = newCard;
 
@@ -117,27 +126,27 @@ namespace MemoryApp
 
         private void SetTilesLocationSize()
         {
-            int fixedWith = this.Width - 10;
-            int fixedHeight = this.Height - 35;
+            int fixedBoardWith = this.Width - 10;
+            int fixedBoardHeight = this.Height - bottomSectionHeight;
 
-            int optimalTileSize = Math.Min(fixedWith / (columns + 1), fixedHeight / (rows + 1)); ;
-            int widthPadding = (fixedWith - columns * optimalTileSize) / (columns + 1);
-            int heightPadding = (fixedHeight - rows * optimalTileSize) / (rows + 1);
+            int optimalTileSize = Math.Min(fixedBoardWith / (columns + 1), fixedBoardHeight / (rows + 1)); ;
+            int widthPadding = (fixedBoardWith - columns * optimalTileSize) / (columns + 1);
+            int heightPadding = (fixedBoardHeight - rows * optimalTileSize) / (rows + 1);
 
             for (int i = 0; i < rows; ++i)
             {
                 for (int j = 0; j < columns; ++j)
                 {
-
+        
                     Card card = this.cards[i * columns + j];
-
-                    // size
-                    card.Width = optimalTileSize;
+   
+                    // size        
+                    card.Width = optimalTileSize;                    
                     card.Height = optimalTileSize;
-
+                    
                     // location
                     card.Location = new Point(widthPadding * (j + 1) + optimalTileSize * j, heightPadding * (i + 1) + optimalTileSize * i);
-
+                        
                     cards[i * columns + j] = card;
                 }
             }
@@ -145,18 +154,19 @@ namespace MemoryApp
 
         private void Game_ResizeEnd(object sender, EventArgs e)
         {
-            this.SetTilesLocationSize();
+            setObjectsLocation();
+
         }
 
         private void Game_Resize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Maximized)
             {
-                SetTilesLocationSize();
+                setObjectsLocation();
             }
             else if (WindowState == FormWindowState.Normal && lastWindowState == FormWindowState.Maximized)
             {
-                SetTilesLocationSize();
+                setObjectsLocation();
             }
             lastWindowState = WindowState;
         }
@@ -169,7 +179,9 @@ namespace MemoryApp
                 c.Enabled = true;
             }
 
+
             timInit.Enabled = false;
+            isCardTurned = false;
         }
 
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
@@ -214,33 +226,71 @@ namespace MemoryApp
             }
 
             timShow.Enabled = false;
+            isCardTurned = false;
+            if(hiddenTiles == 0)
+            {
+                GameFinish();
+            }
+        }
+
+        private void GameFinish()
+        {
+            MessageBox.Show("Congratulation, you did it! :D");
         }
 
         private void Card_Click(object sender, EventArgs e)
         {
-            if (firstCard == null)
+            if (!isPaused)
             {
-                firstCard = (Card)sender;
+                if (firstCard == null)
+                {
+                    firstCard = (Card)sender;
 
-                firstCard.Text = firstCard.ImageID.ToString();
-                firstCard.Enabled = false;
+                    firstCard.Text = firstCard.ImageID.ToString();
+                    firstCard.Enabled = false;
 
-                timShow.Enabled = true;
+                    isCardTurned = true;
+                    timShow.Enabled = true;
+                }
+                else if (firstCard != null && secondCard == null)
+                {
+                    secondCard = (Card)sender;
+
+                    secondCard.Text = secondCard.ImageID.ToString();
+                    secondCard.Enabled = false;
+
+
+                    timShow.Stop();
+
+                    timShow.Start();
+                }
             }
-            else if (firstCard != null && secondCard == null)
+
+        }
+
+        private void Game_Shown(object sender, EventArgs e)
+        {
+            if (menu.settings.initShowTime != 0)
             {
-                secondCard = (Card)sender;
-
-                secondCard.Text = secondCard.ImageID.ToString();
-                secondCard.Enabled = false;
-
-                
-                timShow.Stop();
-
-                timShow.Start();
-               
+                this.timInit.Interval = menu.settings.initShowTime * 1000;
+                this.timInit.Enabled = true;
             }
 
+            this.timShow.Interval = Convert.ToInt32(menu.settings.cardsShowTime * 1000);
+        }
+
+        private void boxPause_Click(object sender, EventArgs e)
+        {
+            if (!isCardTurned && !isPaused)
+            {
+                boxPause.Image = global::MemoryApp.Properties.Resources.startIcon;
+                isPaused = true;
+            }
+            else if(isPaused)
+            {
+                boxPause.Image = global::MemoryApp.Properties.Resources.pauseIcon;
+                isPaused = false;
+            }
         }
 
         private bool equalIDs(Card first, Card second)

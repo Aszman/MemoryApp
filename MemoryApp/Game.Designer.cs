@@ -32,6 +32,9 @@ namespace MemoryApp
             this.components = new System.ComponentModel.Container();
             this.timInit = new System.Windows.Forms.Timer(this.components);
             this.timShow = new System.Windows.Forms.Timer(this.components);
+            this.lblLine = new System.Windows.Forms.Label();
+            this.boxPause = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.boxPause)).BeginInit();
             this.SuspendLayout();
             // 
             // timInit
@@ -42,18 +45,41 @@ namespace MemoryApp
             // 
             this.timShow.Tick += new System.EventHandler(this.timShow_Tick);
             // 
+            // lblLine
+            // 
+            this.lblLine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblLine.Location = new System.Drawing.Point(0, 500);
+            this.lblLine.Name = "lblLine";
+            this.lblLine.Size = new System.Drawing.Size(1600, 2);
+            this.lblLine.TabIndex = 0;
+            // 
+            // boxPause
+            // 
+            this.boxPause.Image = global::MemoryApp.Properties.Resources.pauseIcon;
+            this.boxPause.Location = new System.Drawing.Point(366, 505);
+            this.boxPause.Name = "boxPause";
+            this.boxPause.Size = new System.Drawing.Size(50, 50);
+            this.boxPause.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.boxPause.TabIndex = 2;
+            this.boxPause.TabStop = false;
+            this.boxPause.Click += new System.EventHandler(this.boxPause_Click);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.boxPause);
+            this.Controls.Add(this.lblLine);
             this.MinimumSize = new System.Drawing.Size(604, 495);
             this.Name = "Game";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Memory Game";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
+            this.Shown += new System.EventHandler(this.Game_Shown);
             this.ResizeEnd += new System.EventHandler(this.Game_ResizeEnd);
             this.Resize += new System.EventHandler(this.Game_Resize);
+            ((System.ComponentModel.ISupportInitialize)(this.boxPause)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -62,5 +88,7 @@ namespace MemoryApp
 
         private System.Windows.Forms.Timer timInit;
         private System.Windows.Forms.Timer timShow;
+        private System.Windows.Forms.Label lblLine;
+        private System.Windows.Forms.PictureBox boxPause;
     }
 }
