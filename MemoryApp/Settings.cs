@@ -13,6 +13,7 @@ namespace MemoryApp
     public partial class Settings : Form
     {
         bool isSaved;
+        bool isStartup;
        
         public int initShowTime = 5;  // in seconds, normally 15 now for dev is set 5;
         public double cardsShowTime = 1.5;  // in seconds
@@ -103,6 +104,7 @@ namespace MemoryApp
 
         private void Settings_Load(object sender, EventArgs e)
         {
+            isStartup = true;
             isSaved = true;
 
             lblBoardW.Text = "Board's width (" + boardWidthMin.ToString()
@@ -118,19 +120,28 @@ namespace MemoryApp
         {
             this.lblInV.Text = (this.trkInit.Value * 5).ToString() + " s";
 
-            isSaved = false;
+            if (!isStartup)
+            {
+                isSaved = false;
+            }
         }
 
         private void trkCard_ValueChanged(object sender, EventArgs e)
         {
             this.lblCardV.Text = (this.trkCard.Value/2.0).ToString() + " s";
 
-            isSaved = false;
+            if (!isStartup)
+            {
+                isSaved = false;
+            }
         }
 
         private void nud_ValueChanged(object sender, EventArgs e)
         {
-            isSaved = false;
+            if (!isStartup)
+            {
+                isSaved = false;
+            }
         }
     }
 }

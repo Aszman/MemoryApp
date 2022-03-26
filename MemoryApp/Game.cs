@@ -34,12 +34,6 @@ namespace MemoryApp
 
             InitializeComponent();
 
-
-            this.Width = menu.settings.boardWidth;
-            this.Height = menu.settings.boardHeight + bottomSectionHeight;
-            this.MaximumSize = new Size(menu.settings.boardWidthMax, menu.settings.boardHeightMax + bottomSectionHeight);
-            this.MinimumSize = new Size(menu.settings.boardWidthMin, menu.settings.boardHeightMin + bottomSectionHeight);
-
             InitializeTiles();
             ShuffleTiles();
             setObjectsLocation();
@@ -48,7 +42,14 @@ namespace MemoryApp
 
         private void setObjectsLocation()
         {
+            this.Width = menu.settings.boardWidth;
+            this.Height = menu.settings.boardHeight + bottomSectionHeight;
+            this.MaximumSize = new Size(menu.settings.boardWidthMax, menu.settings.boardHeightMax + bottomSectionHeight);
+            this.MinimumSize = new Size(menu.settings.boardWidthMin, menu.settings.boardHeightMin + bottomSectionHeight);
+
             this.lblLine.Location = new Point(0, Height - bottomSectionHeight);
+            this.btnSett.Location = new Point(10, Height - bottomSectionHeight + 25);
+
             this.boxPause.Location = new Point((Width - boxPause.Width) / 2, Height - bottomSectionHeight + 20) ;
 
             SetTilesLocationSize();
@@ -254,13 +255,12 @@ namespace MemoryApp
                 }
                 else if (firstCard != null && secondCard == null)
                 {
+                    timShow.Stop();
+
                     secondCard = (Card)sender;
 
                     secondCard.Text = secondCard.ImageID.ToString();
                     secondCard.Enabled = false;
-
-
-                    timShow.Stop();
 
                     timShow.Start();
                 }
@@ -291,6 +291,14 @@ namespace MemoryApp
                 boxPause.Image = global::MemoryApp.Properties.Resources.pauseIcon;
                 isPaused = false;
             }
+        }
+
+        private void btnSett_Click(object sender, EventArgs e)
+        {
+            menu.settings.ShowDialog();
+
+            setObjectsLocation();
+
         }
 
         private bool equalIDs(Card first, Card second)

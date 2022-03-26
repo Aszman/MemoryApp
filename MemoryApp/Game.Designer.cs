@@ -34,6 +34,7 @@ namespace MemoryApp
             this.timShow = new System.Windows.Forms.Timer(this.components);
             this.lblLine = new System.Windows.Forms.Label();
             this.boxPause = new System.Windows.Forms.PictureBox();
+            this.btnSett = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.boxPause)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,11 +65,23 @@ namespace MemoryApp
             this.boxPause.TabStop = false;
             this.boxPause.Click += new System.EventHandler(this.boxPause_Click);
             // 
+            // btnSett
+            // 
+            this.btnSett.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnSett.Location = new System.Drawing.Point(12, 517);
+            this.btnSett.Name = "btnSett";
+            this.btnSett.Size = new System.Drawing.Size(80, 30);
+            this.btnSett.TabIndex = 3;
+            this.btnSett.Text = "Settings";
+            this.btnSett.UseVisualStyleBackColor = true;
+            this.btnSett.Click += new System.EventHandler(this.btnSett_Click);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.btnSett);
             this.Controls.Add(this.boxPause);
             this.Controls.Add(this.lblLine);
             this.MinimumSize = new System.Drawing.Size(604, 495);
@@ -90,5 +103,6 @@ namespace MemoryApp
         private System.Windows.Forms.Timer timShow;
         private System.Windows.Forms.Label lblLine;
         private System.Windows.Forms.PictureBox boxPause;
+        private System.Windows.Forms.Button btnSett;
     }
 }
