@@ -33,8 +33,8 @@ namespace MemoryApp
             this.timInit = new System.Windows.Forms.Timer(this.components);
             this.timShow = new System.Windows.Forms.Timer(this.components);
             this.lblLine = new System.Windows.Forms.Label();
-            this.boxPause = new System.Windows.Forms.PictureBox();
             this.btnSett = new System.Windows.Forms.Button();
+            this.boxPause = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.boxPause)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,17 +54,6 @@ namespace MemoryApp
             this.lblLine.Size = new System.Drawing.Size(1600, 2);
             this.lblLine.TabIndex = 0;
             // 
-            // boxPause
-            // 
-            this.boxPause.Image = global::MemoryApp.Properties.Resources.pauseIcon;
-            this.boxPause.Location = new System.Drawing.Point(366, 505);
-            this.boxPause.Name = "boxPause";
-            this.boxPause.Size = new System.Drawing.Size(50, 50);
-            this.boxPause.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.boxPause.TabIndex = 2;
-            this.boxPause.TabStop = false;
-            this.boxPause.Click += new System.EventHandler(this.boxPause_Click);
-            // 
             // btnSett
             // 
             this.btnSett.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -76,6 +65,19 @@ namespace MemoryApp
             this.btnSett.UseVisualStyleBackColor = true;
             this.btnSett.Click += new System.EventHandler(this.btnSett_Click);
             // 
+            // boxPause
+            // 
+            this.boxPause.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.boxPause.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.boxPause.Image = global::MemoryApp.Properties.Resources.pauseIcon;
+            this.boxPause.Location = new System.Drawing.Point(366, 505);
+            this.boxPause.Name = "boxPause";
+            this.boxPause.Size = new System.Drawing.Size(50, 50);
+            this.boxPause.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.boxPause.TabIndex = 2;
+            this.boxPause.TabStop = false;
+            this.boxPause.Click += new System.EventHandler(this.boxPause_Click);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -84,6 +86,7 @@ namespace MemoryApp
             this.Controls.Add(this.btnSett);
             this.Controls.Add(this.boxPause);
             this.Controls.Add(this.lblLine);
+            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(604, 495);
             this.Name = "Game";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -91,7 +94,6 @@ namespace MemoryApp
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
             this.Shown += new System.EventHandler(this.Game_Shown);
             this.ResizeEnd += new System.EventHandler(this.Game_ResizeEnd);
-            this.Resize += new System.EventHandler(this.Game_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.boxPause)).EndInit();
             this.ResumeLayout(false);
 

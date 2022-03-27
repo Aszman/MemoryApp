@@ -129,7 +129,6 @@ namespace MemoryApp
             this.trkCard.LargeChange = 2;
             this.trkCard.Location = new System.Drawing.Point(150, 87);
             this.trkCard.Margin = new System.Windows.Forms.Padding(2);
-            this.trkCard.Maximum = 5;
             this.trkCard.Minimum = 1;
             this.trkCard.Name = "trkCard";
             this.trkCard.Size = new System.Drawing.Size(140, 45);

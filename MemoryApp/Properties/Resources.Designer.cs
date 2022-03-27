@@ -73,9 +73,9 @@ namespace MemoryApp.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap startIcon {
+        internal static System.Drawing.Bitmap play_button {
             get {
-                object obj = ResourceManager.GetObject("startIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("play_button", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

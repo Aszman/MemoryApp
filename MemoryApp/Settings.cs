@@ -12,24 +12,27 @@ namespace MemoryApp
 {
     public partial class Settings : Form
     {
-        bool isSaved;
-        bool isStartup;
+        static Settings instance = null;
+        //states
+        bool isSaved; //changes are up-to-date
+        bool isStartup; // changes in layout are make by synchronizing values 
        
         public int initShowTime = 5;  // in seconds, normally 15 now for dev is set 5;
         public double cardsShowTime = 1.5;  // in seconds
 
         public int boardWidth = 1080;
-        public int boardWidthMax = 1600;
-        public int boardWidthMin = 800;
+        public readonly int boardWidthMax = 1600;
+        public readonly int boardWidthMin = 800;
         
         public int boardHeight = 720;
-        public int boardHeightMax = 900;
-        public int boardHeightMin = 600;
+        public readonly int boardHeightMax = 900;
+        public readonly int boardHeightMin = 600;
 
-
-        public Settings()
+        private Settings()
         {
             InitializeComponent();
+
+            //set maximum and minimum size of game's board
             this.nudWidth.Maximum = boardWidthMax;
             this.nudWidth.Minimum= boardWidthMin;
 
@@ -37,55 +40,37 @@ namespace MemoryApp
             this.nudHeight.Minimum = boardHeightMin;
         }
 
-        private void saveSettings()
+        public static Settings getInstance()
         {
-            // Initial show time
-            initShowTime = trkInit.Value*5;
+            if (instance == null)
+            {
+                instance = new Settings();
+            }
 
-            // Cards show time
-            cardsShowTime = trkCard.Value/2.0;
-
-            //Board width
-            boardWidth = Convert.ToInt32(this.nudWidth.Value);
-
-            //Board height
-            boardHeight = Convert.ToInt32(this.nudHeight.Value);
-
-            this.isSaved = true;
-            return;
+            return instance;
         }
 
-        private void loadValues()
+        // loading form from memory
+        private void Settings_Load(object sender, EventArgs e)
         {
-            // Initial show time
-            this.lblInV.Text = initShowTime.ToString() + " s";
-            this.trkInit.Value = initShowTime/5;
+            isStartup = true;
+            isSaved = true;
 
-            // Cards show time
-            this.lblCardV.Text = cardsShowTime.ToString() + " s";
-            this.trkCard.Value = Convert.ToInt32(cardsShowTime * 2);
+            lblBoardW.Text = "Board's width (" + boardWidthMin.ToString()
+                    + "-" + boardWidthMax.ToString() + "):";
 
-            //Board width
-            this.nudWidth.Value = boardWidth;
+            lblBoardH.Text = "Board's height (" + boardHeightMin.ToString()
+            + "-" + boardHeightMax.ToString() + "):";
 
-            //Board height
-            this.nudHeight.Value = boardHeight;
-        }
+            loadValues();
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            this.saveSettings();
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            isStartup = false;
         }
 
         private void Settings_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!this.isSaved)
-            { 
+            if (!this.isSaved) // if not saved, it warns user about it
+            {
                 DialogResult response = MessageBox.Show("Do you want to save new settings?",
                    "Saving",
                    MessageBoxButtons.YesNoCancel);
@@ -102,18 +87,52 @@ namespace MemoryApp
             }
         }
 
-        private void Settings_Load(object sender, EventArgs e)
+        // loads values from object variables
+        private void loadValues()
         {
-            isStartup = true;
-            isSaved = true;
+            // Initial show time
+            this.lblInV.Text = initShowTime.ToString() + " s";
+            this.trkInit.Value = initShowTime / 5;
 
-            lblBoardW.Text = "Board's width (" + boardWidthMin.ToString()
-                    + "-" + boardWidthMax.ToString() + "):";
+            // Cards show time
+            this.lblCardV.Text = cardsShowTime.ToString() + " s";
+            this.trkCard.Value = Convert.ToInt32(cardsShowTime * 2);
 
-            lblBoardH.Text = "Board's height (" + boardHeightMin.ToString()
-        + "-" + boardHeightMax.ToString() + "):";
+            //Board width
+            this.nudWidth.Value = boardWidth;
 
-            loadValues();
+            //Board height
+            this.nudHeight.Value = boardHeight;
+        }
+
+        // saves values from controls to variables inside form
+        private void saveSettings()
+        {
+            // Initial show time
+            initShowTime = trkInit.Value*5;
+
+            // Cards show time
+            cardsShowTime = trkCard.Value/2.0;
+
+            //Board width
+            boardWidth = Convert.ToInt32(this.nudWidth.Value);
+
+            //Board height
+            boardHeight = Convert.ToInt32(this.nudHeight.Value);
+
+                
+            this.isSaved = true; //successfull saving
+            return;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            this.saveSettings();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void trkInit_ValueChanged(object sender, EventArgs e)

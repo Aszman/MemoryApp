@@ -12,25 +12,26 @@ namespace MemoryApp
 {
     public partial class MainMenu : Form
     {
-        public Settings settings;
+        readonly Settings settings;
         Game game;
 
         public enum Difficulties { EASY, NORMAL, HARD };
 
-        public Difficulties chosenDifficulty = Difficulties.EASY;
+        public Difficulties chosenDifficulty = Difficulties.NORMAL;
         String playerName;
        
 
         public MainMenu()
         {
             InitializeComponent();
-            settings = new Settings();
-            this.boxDiff.SelectedIndex = 0; 
+            settings = Settings.getInstance(); //get global settings
+            this.boxDiff.SelectedIndex = 1; // set selected difficulty to EASY
         }
 
+        
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            if( this.txtName.TextLength == 0)
+            if( this.txtName.TextLength == 0) // if user typed own name he can play, instead can't
             {
                 this.btnPlay.Enabled = false;
             }
@@ -40,20 +41,13 @@ namespace MemoryApp
             }
         }
 
+        // open settings window
         private void btnSett_Click(object sender, EventArgs e)
         {
             settings.ShowDialog();
         }
 
-        private void btnPlay_Click(object sender, EventArgs e)
-        {
-            playerName = txtName.Text;
-
-            this.Hide();
-            game = new Game(this);
-            game.Show();
-        }
-
+        // choosing difficulty
         private void boxDiff_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (this.boxDiff.SelectedIndex)
@@ -71,6 +65,16 @@ namespace MemoryApp
                     this.chosenDifficulty = Difficulties.HARD;
                     break;
             }
+        }
+
+        // saves player's name to variable and start the game's window
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            playerName = txtName.Text;
+
+            this.Hide();
+            game = new Game(this);
+            game.Show();
         }
     }
 }
