@@ -9,6 +9,7 @@ namespace MemoryApp
 
         private readonly MainMenu menu; // to get back to main menu form game's window
         private Settings settings; // to change settings during a game
+        private Score score;
 
         private Card[] cards;
 
@@ -54,19 +55,24 @@ namespace MemoryApp
                     hiddenCards = 12;
                     rows = 3;
                     columns = 4;
+                    score = new Score(menu.playerName, 200);
                     break;
 
                 case MainMenu.Difficulties.NORMAL:
                     hiddenCards = 36;
                     rows = columns = 6;
+                    score = new Score(menu.playerName, 1000);
                     break;
 
                 case MainMenu.Difficulties.HARD:
                     hiddenCards = 80;
                     rows = 8;
                     columns = 10;
+                    score = new Score(menu.playerName, 5000);
                     break;
             }
+
+            UpdateScore();
 
             this.cards = new Card[hiddenCards];
 
@@ -82,6 +88,7 @@ namespace MemoryApp
                     newCard.Image = newCard.Front;
                     newCard.Enabled = false;
                     isCardTurned = true;
+                    btnSett.Enabled = false;
 
                 }
 
@@ -112,6 +119,7 @@ namespace MemoryApp
         {
             this.lblLine.Location = new Point(0, Height - bottomSectionHeight);
             this.btnSett.Location = new Point(10, Height - bottomSectionHeight + 25);
+            this.lblScore.Location = new Point(Width - 200, Height - bottomSectionHeight + 20);
 
             this.boxPause.Location = new Point((Width - boxPause.Width) / 2, Height - bottomSectionHeight + 20);
 
@@ -155,10 +163,32 @@ namespace MemoryApp
             return false;
         }
 
+        private void Pause()
+        {
+            this.timScore.Enabled = false;
+            boxPause.Image = global::MemoryApp.Properties.Resources.play_button;
+            isPaused = true;
+
+        }
+
+        private void Unpause()
+        {
+            this.timScore.Enabled = true;
+            boxPause.Image = global::MemoryApp.Properties.Resources.pauseIcon;
+            isPaused = false;
+        }
+
+        private void UpdateScore()
+        {
+            lblScore.Text = "Score: " + score.getScore().ToString();
+        }
+
         private void GameFinish()
         {
-            MessageBox.Show("Congratulation, you did it! :D");
             isFinished = true;
+            timScore.Stop();
+
+            MessageBox.Show("Congratulation, you did it! \n Your Score: " + score.getScore().ToString());
         }
 
         // runs when form is first time displayed
@@ -170,7 +200,8 @@ namespace MemoryApp
                 this.timInit.Enabled = true;
             }
 
-            this.timShow.Interval = Convert.ToInt32(settings.cardsShowTime * 1000); 
+            this.timBad.Interval = Convert.ToInt32(settings.cardsShowTime * 1000);
+            this.timScore.Enabled = true;
         }
 
         private void Game_ResizeEnd(object sender, EventArgs e)
@@ -197,13 +228,17 @@ namespace MemoryApp
                         break;
                 }
             }
+            else
+            {
+                menu.Show();
+            }
         }
 
         private void Card_Click(object sender, EventArgs e)
         {
-            if (!isPaused)
+            if (!isPaused) //can't turn card when game is paused
             {
-                if (firstCard == null)
+                if (firstCard == null) // if it was first card
                 {
                     firstCard = (Card)sender;
 
@@ -211,20 +246,25 @@ namespace MemoryApp
                     firstCard.Enabled = false;
 
                     isCardTurned = true;
+                    btnSett.Enabled = false;
                 }
-                else if (firstCard != null && secondCard == null)
+                else if (secondCard == null) // if it was second card
                 {
-                    timShow.Stop();
-
                     secondCard = (Card)sender;
 
                     secondCard.Image = secondCard.Front;
                     secondCard.Enabled = false;
 
-                    timShow.Start();
+                    if (equalIDs(firstCard, secondCard))
+                    {
+                        timGood.Start();
+                    }
+                    else
+                    {
+                        timBad.Start();
+                    }
                 }
             }
-
         }
 
         private void timInit_Tick(object sender, EventArgs e)
@@ -237,67 +277,87 @@ namespace MemoryApp
 
             timInit.Enabled = false;
             isCardTurned = false;
+            btnSett.Enabled = true;
         }
 
-
-
-        private void timShow_Tick(object sender, EventArgs e)
+        // pair was wrong
+        private void timGood_Tick(object sender, EventArgs e)
         {
-            if (secondCard != null)
-            {
-                if (equalIDs(firstCard, secondCard))
-                {
-                    firstCard.Visible = false;
-                    secondCard.Visible = false;
-                    hiddenCards -= 2;
-                }
+            timGood.Stop();
 
-                secondCard.Enabled = true;
-                secondCard.Image = null;
+            firstCard.Visible = false;
+            firstCard = null;
+            secondCard.Visible = false;
+            secondCard = null;
 
-                secondCard = null;
+            hiddenCards -= 2;
+            score.madePair();
+            UpdateScore();
 
-            }
-
-            if (firstCard != null)
-            {
-                firstCard.Enabled = true;
-                firstCard.Image = null;
-
-                firstCard = null;
-            }
-
-            timShow.Enabled = false;
             isCardTurned = false;
+            btnSett.Enabled = true;
+
             if (hiddenCards == 0)
             {
                 GameFinish();
             }
         }
 
+        // pair was correct
+        private void timBad_Tick(object sender, EventArgs e)
+        {
+            timBad.Stop();
+
+            firstCard.Enabled = true;
+            firstCard.Image = null;
+            firstCard = null;
+
+            secondCard.Enabled = true;
+            secondCard.Image = null;
+            secondCard = null;
+
+            score.madeMistake();
+            UpdateScore();
+
+            isCardTurned = false;
+            btnSett.Enabled = true;
+        }
+
+
+
         private void boxPause_Click(object sender, EventArgs e)
         {
-            if (!isCardTurned && !isPaused)
+            if (!isCardTurned && !isPaused) //cant pause when game is paused or card is turned
             {
-                boxPause.Image = global::MemoryApp.Properties.Resources.play_button;
-                isPaused = true;
+                Pause();
+
             }
-            else if (isPaused)
+            else if (isPaused) //unpause when game is paused
             {
-                boxPause.Image = global::MemoryApp.Properties.Resources.pauseIcon;
-                isPaused = false;
+                Unpause();
             }
+        }
+
+        private void timScore_Tick(object sender, EventArgs e)
+        {
+            score.substractValue(1);
+            UpdateScore();
         }
 
         private void btnSett_Click(object sender, EventArgs e)
         {
+            if (!isPaused)
+            {
+                Pause();
+            }
+
             settings.ShowDialog();
 
             this.Width = settings.boardWidth;
             this.Height = settings.boardHeight + bottomSectionHeight;
 
             timInit.Interval = settings.initShowTime * 1000;
-            timShow.Interval = Convert.ToInt32(settings.cardsShowTime * 1000);
+            timBad.Interval = Convert.ToInt32(settings.cardsShowTime * 1000);
 
             SetObjectsLocation();
         }

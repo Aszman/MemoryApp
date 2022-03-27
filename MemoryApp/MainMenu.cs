@@ -18,7 +18,7 @@ namespace MemoryApp
         public enum Difficulties { EASY, NORMAL, HARD };
 
         public Difficulties chosenDifficulty = Difficulties.NORMAL;
-        String playerName;
+        public String playerName;
        
 
         public MainMenu()

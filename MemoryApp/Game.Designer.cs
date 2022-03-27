@@ -31,10 +31,13 @@ namespace MemoryApp
         {
             this.components = new System.ComponentModel.Container();
             this.timInit = new System.Windows.Forms.Timer(this.components);
-            this.timShow = new System.Windows.Forms.Timer(this.components);
+            this.timBad = new System.Windows.Forms.Timer(this.components);
             this.lblLine = new System.Windows.Forms.Label();
             this.btnSett = new System.Windows.Forms.Button();
             this.boxPause = new System.Windows.Forms.PictureBox();
+            this.timGood = new System.Windows.Forms.Timer(this.components);
+            this.timScore = new System.Windows.Forms.Timer(this.components);
+            this.lblScore = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.boxPause)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,9 +45,9 @@ namespace MemoryApp
             // 
             this.timInit.Tick += new System.EventHandler(this.timInit_Tick);
             // 
-            // timShow
+            // timBad
             // 
-            this.timShow.Tick += new System.EventHandler(this.timShow_Tick);
+            this.timBad.Tick += new System.EventHandler(this.timBad_Tick);
             // 
             // lblLine
             // 
@@ -78,11 +81,32 @@ namespace MemoryApp
             this.boxPause.TabStop = false;
             this.boxPause.Click += new System.EventHandler(this.boxPause_Click);
             // 
+            // timGood
+            // 
+            this.timGood.Interval = 500;
+            this.timGood.Tick += new System.EventHandler(this.timGood_Tick);
+            // 
+            // timScore
+            // 
+            this.timScore.Interval = 1000;
+            this.timScore.Tick += new System.EventHandler(this.timScore_Tick);
+            // 
+            // lblScore
+            // 
+            this.lblScore.AutoSize = true;
+            this.lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblScore.Location = new System.Drawing.Point(680, 518);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(92, 25);
+            this.lblScore.TabIndex = 4;
+            this.lblScore.Text = "Score: 0";
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.lblScore);
             this.Controls.Add(this.btnSett);
             this.Controls.Add(this.boxPause);
             this.Controls.Add(this.lblLine);
@@ -96,15 +120,19 @@ namespace MemoryApp
             this.ResizeEnd += new System.EventHandler(this.Game_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.boxPause)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Timer timInit;
-        private System.Windows.Forms.Timer timShow;
+        private System.Windows.Forms.Timer timBad;
         private System.Windows.Forms.Label lblLine;
         private System.Windows.Forms.PictureBox boxPause;
         private System.Windows.Forms.Button btnSett;
+        private System.Windows.Forms.Timer timGood;
+        private System.Windows.Forms.Timer timScore;
+        private System.Windows.Forms.Label lblScore;
     }
 }
