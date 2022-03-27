@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,7 +20,8 @@ namespace MemoryApp
 
         public Difficulties chosenDifficulty = Difficulties.NORMAL;
         public String playerName;
-       
+
+        Regex reg = new Regex("[;.,/?\\\\]");
 
         public MainMenu()
         {
@@ -34,10 +36,18 @@ namespace MemoryApp
             if( this.txtName.TextLength == 0) // if user typed own name he can play, instead can't
             {
                 this.btnPlay.Enabled = false;
+                this.lblFor.Visible = false;
+
+            }
+            else if (reg.IsMatch(this.txtName.Text))
+            {
+                this.btnPlay.Enabled = false;
+                this.lblFor.Visible = true;
             }
             else
             {
                 this.btnPlay.Enabled = true;
+                this.lblFor.Visible = false;
             }
         }
 
@@ -75,6 +85,11 @@ namespace MemoryApp
             this.Hide();
             game = new Game(this);
             game.Show();
+        }
+
+        private void lblFor_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

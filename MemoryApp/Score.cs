@@ -11,8 +11,8 @@ namespace MemoryApp
         const int mistakeValue = 100;
         const int pairValue = 20;
 
-        private int score;
         private String name;
+        private int score;
 
         public Score(String _name, int initScore)
         {

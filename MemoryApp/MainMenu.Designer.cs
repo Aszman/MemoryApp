@@ -35,6 +35,7 @@ namespace MemoryApp
             this.btnSett = new System.Windows.Forms.Button();
             this.lblDiff = new System.Windows.Forms.Label();
             this.boxDiff = new System.Windows.Forms.ComboBox();
+            this.lblFor = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblName
@@ -60,7 +61,7 @@ namespace MemoryApp
             // 
             this.btnPlay.Enabled = false;
             this.btnPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnPlay.Location = new System.Drawing.Point(155, 138);
+            this.btnPlay.Location = new System.Drawing.Point(155, 144);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(90, 40);
             this.btnPlay.TabIndex = 2;
@@ -71,7 +72,7 @@ namespace MemoryApp
             // btnSett
             // 
             this.btnSett.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnSett.Location = new System.Drawing.Point(155, 194);
+            this.btnSett.Location = new System.Drawing.Point(155, 200);
             this.btnSett.Name = "btnSett";
             this.btnSett.Size = new System.Drawing.Size(90, 40);
             this.btnSett.TabIndex = 3;
@@ -83,7 +84,7 @@ namespace MemoryApp
             // 
             this.lblDiff.AutoSize = true;
             this.lblDiff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblDiff.Location = new System.Drawing.Point(112, 91);
+            this.lblDiff.Location = new System.Drawing.Point(112, 106);
             this.lblDiff.Name = "lblDiff";
             this.lblDiff.Size = new System.Drawing.Size(73, 20);
             this.lblDiff.TabIndex = 4;
@@ -98,17 +99,31 @@ namespace MemoryApp
             "Easy (12 cards)",
             "Normal (36 cards)",
             "Hard (80 cards)"});
-            this.boxDiff.Location = new System.Drawing.Point(209, 93);
+            this.boxDiff.Location = new System.Drawing.Point(209, 106);
             this.boxDiff.Name = "boxDiff";
             this.boxDiff.Size = new System.Drawing.Size(100, 21);
             this.boxDiff.TabIndex = 6;
             this.boxDiff.SelectedIndexChanged += new System.EventHandler(this.boxDiff_SelectedIndexChanged);
+            // 
+            // lblFor
+            // 
+            this.lblFor.AutoSize = true;
+            this.lblFor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblFor.ForeColor = System.Drawing.Color.Red;
+            this.lblFor.Location = new System.Drawing.Point(206, 79);
+            this.lblFor.Name = "lblFor";
+            this.lblFor.Size = new System.Drawing.Size(123, 15);
+            this.lblFor.TabIndex = 7;
+            this.lblFor.Text = ". , ; / \\ ? are forbidden!";
+            this.lblFor.Visible = false;
+            this.lblFor.Click += new System.EventHandler(this.lblFor_Click);
             // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 261);
+            this.Controls.Add(this.lblFor);
             this.Controls.Add(this.boxDiff);
             this.Controls.Add(this.lblDiff);
             this.Controls.Add(this.btnSett);
@@ -136,6 +151,7 @@ namespace MemoryApp
         private System.Windows.Forms.Button btnSett;
         private System.Windows.Forms.Label lblDiff;
         private System.Windows.Forms.ComboBox boxDiff;
+        private System.Windows.Forms.Label lblFor;
     }
 }
 
