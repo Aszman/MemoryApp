@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MemoryApp
 {
-    class Score
+    public class Score
     {
         const int mistakeValue = 100;
         const int pairValue = 20;
@@ -23,6 +23,11 @@ namespace MemoryApp
         public int getScore()
         {
             return this.score;
+        }
+
+        public String getName()
+        {
+            return this.name;
         }
 
         public void madeMistake()

@@ -188,7 +188,9 @@ namespace MemoryApp
             isFinished = true;
             timScore.Stop();
 
-            MessageBox.Show("Congratulation, you did it! \n Your Score: " + score.getScore().ToString());
+            HighScore.getInstance().AddScore(score);
+            HighScore.getInstance().ShowDialog();
+
         }
 
         // runs when form is first time displayed

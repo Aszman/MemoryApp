@@ -29,12 +29,53 @@ namespace MemoryApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.listScore = new System.Windows.Forms.ListView();
+            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colScore = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SuspendLayout();
+            // 
+            // listScore
+            // 
+            this.listScore.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colName,
+            this.colScore});
+            this.listScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.listScore.HideSelection = false;
+            this.listScore.Location = new System.Drawing.Point(21, 6);
+            this.listScore.Name = "listScore";
+            this.listScore.Size = new System.Drawing.Size(200, 291);
+            this.listScore.TabIndex = 0;
+            this.listScore.UseCompatibleStateImageBehavior = false;
+            this.listScore.View = System.Windows.Forms.View.Details;
+            // 
+            // colName
+            // 
+            this.colName.Text = "Name";
+            this.colName.Width = 120;
+            // 
+            // colScore
+            // 
+            this.colScore.Text = "Score";
+            this.colScore.Width = 80;
+            // 
+            // HighScore
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(247, 309);
+            this.Controls.Add(this.listScore);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "HighScore";
             this.Text = "HighScore";
+            this.Load += new System.EventHandler(this.HighScore_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.ListView listScore;
+        private System.Windows.Forms.ColumnHeader colName;
+        private System.Windows.Forms.ColumnHeader colScore;
     }
 }

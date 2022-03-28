@@ -36,6 +36,7 @@ namespace MemoryApp
             this.lblDiff = new System.Windows.Forms.Label();
             this.boxDiff = new System.Windows.Forms.ComboBox();
             this.lblFor = new System.Windows.Forms.Label();
+            this.btnScore = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblName
@@ -116,13 +117,23 @@ namespace MemoryApp
             this.lblFor.TabIndex = 7;
             this.lblFor.Text = ". , ; / \\ ? are forbidden!";
             this.lblFor.Visible = false;
-            this.lblFor.Click += new System.EventHandler(this.lblFor_Click);
+            // 
+            // btnScore
+            // 
+            this.btnScore.Location = new System.Drawing.Point(46, 187);
+            this.btnScore.Name = "btnScore";
+            this.btnScore.Size = new System.Drawing.Size(75, 23);
+            this.btnScore.TabIndex = 8;
+            this.btnScore.Text = "Score";
+            this.btnScore.UseVisualStyleBackColor = true;
+            this.btnScore.Click += new System.EventHandler(this.btnScore_Click);
             // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 261);
+            this.Controls.Add(this.btnScore);
             this.Controls.Add(this.lblFor);
             this.Controls.Add(this.boxDiff);
             this.Controls.Add(this.lblDiff);
@@ -152,6 +163,7 @@ namespace MemoryApp
         private System.Windows.Forms.Label lblDiff;
         private System.Windows.Forms.ComboBox boxDiff;
         private System.Windows.Forms.Label lblFor;
+        private System.Windows.Forms.Button btnScore;
     }
 }
 

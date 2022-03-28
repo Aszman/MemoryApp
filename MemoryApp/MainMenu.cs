@@ -14,6 +14,7 @@ namespace MemoryApp
     public partial class MainMenu : Form
     {
         readonly Settings settings;
+        HighScore highScore;
         Game game;
 
         public enum Difficulties { EASY, NORMAL, HARD };
@@ -27,6 +28,7 @@ namespace MemoryApp
         {
             InitializeComponent();
             settings = Settings.getInstance(); //get global settings
+            highScore = HighScore.getInstance();
             this.boxDiff.SelectedIndex = 1; // set selected difficulty to EASY
         }
 
@@ -87,9 +89,9 @@ namespace MemoryApp
             game.Show();
         }
 
-        private void lblFor_Click(object sender, EventArgs e)
+        private void btnScore_Click(object sender, EventArgs e)
         {
-
+            highScore.ShowDialog();
         }
     }
 }
