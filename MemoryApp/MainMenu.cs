@@ -22,7 +22,7 @@ namespace MemoryApp
         public Difficulties chosenDifficulty = Difficulties.NORMAL;
         public String playerName;
 
-        Regex reg = new Regex("[;.,/?\\\\]");
+        Regex reg = new Regex("^[a-zA-Z0-9]*$");
 
         public MainMenu()
         {
@@ -43,13 +43,13 @@ namespace MemoryApp
             }
             else if (reg.IsMatch(this.txtName.Text))
             {
-                this.btnPlay.Enabled = false;
-                this.lblFor.Visible = true;
+                this.btnPlay.Enabled = true;
+                this.lblFor.Visible = false;
             }
             else
             {
-                this.btnPlay.Enabled = true;
-                this.lblFor.Visible = false;
+                this.btnPlay.Enabled = false;
+                this.lblFor.Visible = true;
             }
         }
 

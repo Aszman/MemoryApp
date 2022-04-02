@@ -1,9 +1,6 @@
+fruit;7892
 jan;3450
-jan;3450
-jan;3450
-jan;3450
-y;309
-y;309
-y;309
-y;309
-aszman;-1128
+koala;2006
+kazik;1249
+aszman;1128
+xyz;309

@@ -111,20 +111,21 @@ namespace MemoryApp
             this.lblFor.AutoSize = true;
             this.lblFor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblFor.ForeColor = System.Drawing.Color.Red;
-            this.lblFor.Location = new System.Drawing.Point(206, 79);
+            this.lblFor.Location = new System.Drawing.Point(192, 79);
             this.lblFor.Name = "lblFor";
-            this.lblFor.Size = new System.Drawing.Size(123, 15);
+            this.lblFor.Size = new System.Drawing.Size(173, 15);
             this.lblFor.TabIndex = 7;
-            this.lblFor.Text = ". , ; / \\ ? are forbidden!";
+            this.lblFor.Text = "Only alphanumeric characters!";
             this.lblFor.Visible = false;
             // 
             // btnScore
             // 
-            this.btnScore.Location = new System.Drawing.Point(46, 187);
+            this.btnScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnScore.Location = new System.Drawing.Point(33, 172);
             this.btnScore.Name = "btnScore";
-            this.btnScore.Size = new System.Drawing.Size(75, 23);
+            this.btnScore.Size = new System.Drawing.Size(96, 35);
             this.btnScore.TabIndex = 8;
-            this.btnScore.Text = "Score";
+            this.btnScore.Text = "HighScores";
             this.btnScore.UseVisualStyleBackColor = true;
             this.btnScore.Click += new System.EventHandler(this.btnScore_Click);
             // 

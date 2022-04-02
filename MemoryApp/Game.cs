@@ -37,8 +37,8 @@ namespace MemoryApp
 
             this.Width = settings.boardWidth;
             this.Height = settings.boardHeight + bottomSectionHeight;
-            this.MaximumSize = new Size(settings.boardWidthMax, settings.boardHeightMax + bottomSectionHeight);
-            this.MinimumSize = new Size(settings.boardWidthMin, settings.boardHeightMin + bottomSectionHeight);
+            this.MaximumSize = new Size(Settings.boardWidthMax, Settings.boardHeightMax + bottomSectionHeight);
+            this.MinimumSize = new Size(Settings.boardWidthMin, Settings.boardHeightMin + bottomSectionHeight);
 
             InitializeCards();
             ShuffleCards();
@@ -55,20 +55,20 @@ namespace MemoryApp
                     hiddenCards = 12;
                     rows = 3;
                     columns = 4;
-                    score = new Score(menu.playerName, 200);
+                    score = new Score(menu.playerName, 2000);
                     break;
 
                 case MainMenu.Difficulties.NORMAL:
                     hiddenCards = 36;
                     rows = columns = 6;
-                    score = new Score(menu.playerName, 1000);
+                    score = new Score(menu.playerName, 10000);
                     break;
 
                 case MainMenu.Difficulties.HARD:
                     hiddenCards = 80;
                     rows = 8;
                     columns = 10;
-                    score = new Score(menu.playerName, 5000);
+                    score = new Score(menu.playerName, 50000);
                     break;
             }
 

@@ -70,7 +70,7 @@ namespace MemoryApp
             // 
             // boxPause
             // 
-            this.boxPause.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.boxPause.BackColor = System.Drawing.SystemColors.Control;
             this.boxPause.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.boxPause.Image = global::MemoryApp.Properties.Resources.pauseIcon;
             this.boxPause.Location = new System.Drawing.Point(366, 505);

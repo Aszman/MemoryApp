@@ -17,16 +17,16 @@ namespace MemoryApp
         bool isSaved; //changes are up-to-date
         bool isStartup; // changes in layout are make by synchronizing values 
        
-        public int initShowTime = 5;  // in seconds, normally 15 now for dev is set 5;
+        public int initShowTime = 15;  // in seconds, normally 15 now for dev is set 5;
         public double cardsShowTime = 1.5;  // in seconds
 
         public int boardWidth = 1080;
-        public readonly int boardWidthMax = 1600;
-        public readonly int boardWidthMin = 800;
+        public const int boardWidthMax = 1600;
+        public const int boardWidthMin = 800;
         
         public int boardHeight = 720;
-        public readonly int boardHeightMax = 900;
-        public readonly int boardHeightMin = 600;
+        public const int boardHeightMax = 900;
+        public const int boardHeightMin = 600;
 
         private Settings()
         {
