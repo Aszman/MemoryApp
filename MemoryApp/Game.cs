@@ -260,6 +260,7 @@ namespace MemoryApp
                     if (equalIDs(firstCard, secondCard))
                     {
                         timGood.Start();
+
                     }
                     else
                     {
@@ -288,8 +289,13 @@ namespace MemoryApp
             timGood.Stop();
 
             firstCard.Visible = false;
+            firstCard.Front.Dispose();
+            firstCard.Image.Dispose();
             firstCard = null;
+
             secondCard.Visible = false;
+            secondCard.Front.Dispose();
+            secondCard.Image.Dispose();
             secondCard = null;
 
             hiddenCards -= 2;
