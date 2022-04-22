@@ -1,8 +1,11 @@
 marcin;8036
 fruit;7892
 jan;3450
+ih;2110
+maniak;2100
 okokk;2098
 koala;2006
+khkh;1901
 kazik;1249
 aszman;1128
 xyz;309

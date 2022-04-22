@@ -1,40 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MemoryApp
 {
     public partial class frmSettings : Form
     {
-        private SettingsManager settingsManager;
+        private ManSettings settingsManager;
         //states
         bool isSaved; //changes are up-to-date
         bool isStartup; // changes in layout are make by synchronizing values 
        
         public frmSettings()
         {
-            settingsManager = SettingsManager.getInstance();
+            settingsManager = ManSettings.getInstance();
 
             InitializeComponent();
 
             //set maximum and minimum size of game's board
-            this.nudWidth.Maximum = SettingsManager.boardWidthMax;
-            this.nudWidth.Minimum = SettingsManager.boardWidthMin;
+            this.nudWidth.Maximum = ManSettings.boardWidthMax;
+            this.nudWidth.Minimum = ManSettings.boardWidthMin;
 
-            this.nudHeight.Maximum = SettingsManager.boardHeightMax;
-            this.nudHeight.Minimum = SettingsManager.boardHeightMin;
+            this.nudHeight.Maximum = ManSettings.boardHeightMax;
+            this.nudHeight.Minimum = ManSettings.boardHeightMin;
 
-            lblBoardW.Text = "Board's width (" + SettingsManager.boardWidthMin.ToString()
-                    + "-" + SettingsManager.boardWidthMax.ToString() + "):";
+            lblBoardW.Text = "Board's width (" + ManSettings.boardWidthMin.ToString()
+                    + "-" + ManSettings.boardWidthMax.ToString() + "):";
 
-            lblBoardH.Text = "Board's height (" + SettingsManager.boardHeightMin.ToString()
-            + "-" + SettingsManager.boardHeightMax.ToString() + "):";
+            lblBoardH.Text = "Board's height (" + ManSettings.boardHeightMin.ToString()
+            + "-" + ManSettings.boardHeightMax.ToString() + "):";
         }
 
 

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MemoryApp
+﻿namespace MemoryApp
 {
-    class SettingsManager
+    class ManSettings
     {
-        static SettingsManager instance = null;
+        static ManSettings instance = null;
  
         public int initCardsShowTime = 15;  // in seconds, normally 15 now for dev is set 5;
         public double cardsFaceUpShowTime = 1.5;  // in seconds
@@ -22,16 +16,16 @@ namespace MemoryApp
         public const int boardHeightMin = 600;
 
 
-        private SettingsManager()
+        private ManSettings()
         {
 
         }
 
-        public static SettingsManager getInstance()
+        public static ManSettings getInstance()
         {
             if (instance == null)
             {
-                instance = new SettingsManager();
+                instance = new ManSettings();
             }
 
             return instance;

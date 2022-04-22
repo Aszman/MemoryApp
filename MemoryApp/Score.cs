@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MemoryApp
+﻿namespace MemoryApp
 {
     public class Score
     {
         const int mistakeValue = 100;
         const int pairValue = 20;
 
-        private String name;
+        private string name;
         private int score;
 
-        public Score(String _name, int initScore)
+        public Score(string _name, int initScore)
         {
             this.name = _name;
             this.score = initScore;
@@ -25,7 +19,7 @@ namespace MemoryApp
             return this.score;
         }
 
-        public String getName()
+        public string getName()
         {
             return this.name;
         }

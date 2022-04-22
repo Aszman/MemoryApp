@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MemoryApp
@@ -14,13 +7,13 @@ namespace MemoryApp
     public partial class frmMainMenu : Form
     {
         frmSettings settingsForm;
-        frmHighScore highScore;
+        frmHighScore highScoreForm;
         frmGame game;
 
         public enum Difficulties { EASY, NORMAL, HARD };
 
         public Difficulties chosenDifficulty = Difficulties.NORMAL;
-        public String playerName;
+        public string playerName;
 
         Regex reg = new Regex("^[a-zA-Z0-9]*$");
 
@@ -28,7 +21,7 @@ namespace MemoryApp
         {
             InitializeComponent();
             settingsForm = new frmSettings();
-            highScore = frmHighScore.getInstance();
+            highScoreForm = new frmHighScore();
 
             this.boxDiff.SelectedIndex = 1; // set selected difficulty to EASY
         }
@@ -92,7 +85,7 @@ namespace MemoryApp
 
         private void btnScore_Click(object sender, EventArgs e)
         {
-            highScore.ShowDialog();
+            highScoreForm.ShowDialog();
         }
     }
 }

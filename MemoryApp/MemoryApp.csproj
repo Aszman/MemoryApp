@@ -54,6 +54,7 @@
     <Compile Include="frmHighScore.Designer.cs">
       <DependentUpon>frmHighScore.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManHighScore.cs" />
     <Compile Include="Score.cs" />
     <Compile Include="frmGame.cs">
       <SubType>Form</SubType>
@@ -81,7 +82,7 @@
     <Compile Include="Card.Designer.cs">
       <DependentUpon>Card.cs</DependentUpon>
     </Compile>
-    <Compile Include="SettingsManager.cs" />
+    <Compile Include="ManSettings.cs" />
     <EmbeddedResource Include="frmGame.resx">
       <DependentUpon>frmGame.cs</DependentUpon>
     </EmbeddedResource>

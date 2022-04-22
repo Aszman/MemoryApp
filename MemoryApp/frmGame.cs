@@ -8,8 +8,11 @@ namespace MemoryApp
     {
 
         private readonly frmMainMenu menu; // to get back to main menu form game's window
-        private SettingsManager settings; // to change settings during a game
         frmSettings settingsForm;
+        frmHighScore highScoreForm;
+
+        private ManHighScore highScore;
+        private ManSettings settings; // to change settings during a game
         private Score score;
 
         private Card[] cards;
@@ -32,15 +35,19 @@ namespace MemoryApp
         public frmGame(frmMainMenu owner)
         {
             menu = owner;
-            settings = SettingsManager.getInstance();
+
+            settings = ManSettings.getInstance();
+            highScore = ManHighScore.getInstance();
+
             settingsForm = new frmSettings();
+            highScoreForm = new frmHighScore();
 
             InitializeComponent();
 
             this.Width = settings.boardWidth;
             this.Height = settings.boardHeight + bottomSectionHeight;
-            this.MaximumSize = new Size(SettingsManager.boardWidthMax, SettingsManager.boardHeightMax + bottomSectionHeight);
-            this.MinimumSize = new Size(SettingsManager.boardWidthMin, SettingsManager.boardHeightMin + bottomSectionHeight);
+            this.MaximumSize = new Size(ManSettings.boardWidthMax, ManSettings.boardHeightMax + bottomSectionHeight);
+            this.MinimumSize = new Size(ManSettings.boardWidthMin, ManSettings.boardHeightMin + bottomSectionHeight);
 
             InitializeCards();
             ShuffleCards();
@@ -168,7 +175,7 @@ namespace MemoryApp
         private void Pause()
         {
             this.timScore.Enabled = false;
-            boxPause.Image = global::MemoryApp.Properties.Resources.play_button;
+            boxPause.Image = Properties.Resources.play_button;
             isPaused = true;
 
         }
@@ -176,7 +183,7 @@ namespace MemoryApp
         private void Unpause()
         {
             this.timScore.Enabled = true;
-            boxPause.Image = global::MemoryApp.Properties.Resources.pauseIcon;
+            boxPause.Image = Properties.Resources.pauseIcon;
             isPaused = false;
         }
 
@@ -190,9 +197,8 @@ namespace MemoryApp
             isFinished = true;
             timScore.Stop();
 
-            frmHighScore.getInstance().AddScore(score);
-            frmHighScore.getInstance().ShowDialog();
-
+            highScore.AddScore(score);
+            highScoreForm.ShowDialog();
         }
 
         // runs when form is first time displayed
