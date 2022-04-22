@@ -1,7 +1,7 @@
 ﻿
 namespace MemoryApp
 {
-    partial class HighScore
+    partial class frmHighScore
     {
         /// <summary>
         /// Required designer variable.
@@ -36,14 +36,16 @@ namespace MemoryApp
             // 
             // listScore
             // 
+            this.listScore.Alignment = System.Windows.Forms.ListViewAlignment.Left;
             this.listScore.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName,
             this.colScore});
+            this.listScore.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.listScore.HideSelection = false;
-            this.listScore.Location = new System.Drawing.Point(21, 6);
+            this.listScore.Location = new System.Drawing.Point(0, 0);
             this.listScore.Name = "listScore";
-            this.listScore.Size = new System.Drawing.Size(200, 291);
+            this.listScore.Size = new System.Drawing.Size(247, 309);
             this.listScore.TabIndex = 0;
             this.listScore.UseCompatibleStateImageBehavior = false;
             this.listScore.View = System.Windows.Forms.View.Details;
@@ -56,16 +58,15 @@ namespace MemoryApp
             // colScore
             // 
             this.colScore.Text = "Score";
-            this.colScore.Width = 80;
+            this.colScore.Width = 121;
             // 
-            // HighScore
+            // frmHighScore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(247, 309);
             this.Controls.Add(this.listScore);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "HighScore";
+            this.Name = "frmHighScore";
             this.Text = "HighScore";
             this.Load += new System.EventHandler(this.HighScore_Load);
             this.ResumeLayout(false);

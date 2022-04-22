@@ -4,11 +4,12 @@ using System.Windows.Forms;
 
 namespace MemoryApp
 {
-    public partial class Game : Form
+    public partial class frmGame : Form
     {
 
-        private readonly MainMenu menu; // to get back to main menu form game's window
-        private Settings settings; // to change settings during a game
+        private readonly frmMainMenu menu; // to get back to main menu form game's window
+        private SettingsManager settings; // to change settings during a game
+        frmSettings settingsForm;
         private Score score;
 
         private Card[] cards;
@@ -28,17 +29,18 @@ namespace MemoryApp
         //constants for layout design
         private const int bottomSectionHeight = 120;
 
-        public Game(MainMenu owner)
+        public frmGame(frmMainMenu owner)
         {
             menu = owner;
-            settings = Settings.getInstance();
+            settings = SettingsManager.getInstance();
+            settingsForm = new frmSettings();
 
             InitializeComponent();
 
             this.Width = settings.boardWidth;
             this.Height = settings.boardHeight + bottomSectionHeight;
-            this.MaximumSize = new Size(Settings.boardWidthMax, Settings.boardHeightMax + bottomSectionHeight);
-            this.MinimumSize = new Size(Settings.boardWidthMin, Settings.boardHeightMin + bottomSectionHeight);
+            this.MaximumSize = new Size(SettingsManager.boardWidthMax, SettingsManager.boardHeightMax + bottomSectionHeight);
+            this.MinimumSize = new Size(SettingsManager.boardWidthMin, SettingsManager.boardHeightMin + bottomSectionHeight);
 
             InitializeCards();
             ShuffleCards();
@@ -51,20 +53,20 @@ namespace MemoryApp
         {
             switch (menu.chosenDifficulty)
             {
-                case MainMenu.Difficulties.EASY:
+                case frmMainMenu.Difficulties.EASY:
                     hiddenCards = 12;
                     rows = 3;
                     columns = 4;
                     score = new Score(menu.playerName, 2000);
                     break;
 
-                case MainMenu.Difficulties.NORMAL:
+                case frmMainMenu.Difficulties.NORMAL:
                     hiddenCards = 36;
                     rows = columns = 6;
                     score = new Score(menu.playerName, 10000);
                     break;
 
-                case MainMenu.Difficulties.HARD:
+                case frmMainMenu.Difficulties.HARD:
                     hiddenCards = 80;
                     rows = 8;
                     columns = 10;
@@ -83,7 +85,7 @@ namespace MemoryApp
                 newCard.Front = Image.FromFile("..\\..\\Resources\\" + newCard.ID.ToString() + ".png");
 
                 // if cards' front will be visible right after a start 
-                if (settings.initShowTime != 0) 
+                if (settings.initCardsShowTime != 0) 
                 {
                     newCard.Image = newCard.Front;
                     newCard.Enabled = false;
@@ -188,21 +190,21 @@ namespace MemoryApp
             isFinished = true;
             timScore.Stop();
 
-            HighScore.getInstance().AddScore(score);
-            HighScore.getInstance().ShowDialog();
+            frmHighScore.getInstance().AddScore(score);
+            frmHighScore.getInstance().ShowDialog();
 
         }
 
         // runs when form is first time displayed
         private void Game_Shown(object sender, EventArgs e)
         {
-            if (settings.initShowTime != 0) // starts timer if value is positive
+            if (settings.initCardsShowTime != 0) // starts timer if value is positive
             {
-                this.timInit.Interval = settings.initShowTime * 1000;
+                this.timInit.Interval = settings.initCardsShowTime * 1000;
                 this.timInit.Enabled = true;
             }
 
-            this.timBad.Interval = Convert.ToInt32(settings.cardsShowTime * 1000);
+            this.timBad.Interval = Convert.ToInt32(settings.cardsFaceUpShowTime * 1000);
             this.timScore.Enabled = true;
         }
 
@@ -359,13 +361,13 @@ namespace MemoryApp
                 Pause();
             }
 
-            settings.ShowDialog();
+            settingsForm.ShowDialog();
 
             this.Width = settings.boardWidth;
             this.Height = settings.boardHeight + bottomSectionHeight;
 
-            timInit.Interval = settings.initShowTime * 1000;
-            timBad.Interval = Convert.ToInt32(settings.cardsShowTime * 1000);
+            timInit.Interval = settings.initCardsShowTime * 1000;
+            timBad.Interval = Convert.ToInt32(settings.cardsFaceUpShowTime * 1000);
 
             SetObjectsLocation();
         }

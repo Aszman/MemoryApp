@@ -12,23 +12,23 @@ using System.Windows.Forms;
 
 namespace MemoryApp
 {
-    public partial class HighScore : Form
+    public partial class frmHighScore : Form
     {
-        private static HighScore instance = null;
+        private static frmHighScore instance = null;
         private String fileURL = "..\\..\\Scores.txt";
 
         private List<Item> items = new List<Item>();
-        private HighScore()
+        private frmHighScore()
         {
             InitializeComponent();
             LoadFromFile();
         }
 
-        public static HighScore getInstance()
+        public static frmHighScore getInstance()
         {
             if(instance == null)
             {
-                instance = new HighScore();
+                instance = new frmHighScore();
             }
 
             return instance;

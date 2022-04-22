@@ -1,7 +1,7 @@
 ﻿
 namespace MemoryApp
 {
-    partial class Settings
+    partial class frmSettings
     {
         /// <summary>
         /// Required designer variable.
@@ -77,14 +77,14 @@ namespace MemoryApp
             this.lblInit.Location = new System.Drawing.Point(17, 38);
             this.lblInit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInit.Name = "lblInit";
-            this.lblInit.Size = new System.Drawing.Size(125, 20);
+            this.lblInit.Size = new System.Drawing.Size(168, 20);
             this.lblInit.TabIndex = 2;
-            this.lblInit.Text = "Initial show time:";
+            this.lblInit.Text = "Initial cards show time:";
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox1.Location = new System.Drawing.Point(206, 38);
+            this.textBox1.Location = new System.Drawing.Point(245, 38);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(76, 26);
@@ -93,7 +93,7 @@ namespace MemoryApp
             // trkInit
             // 
             this.trkInit.LargeChange = 2;
-            this.trkInit.Location = new System.Drawing.Point(150, 38);
+            this.trkInit.Location = new System.Drawing.Point(189, 38);
             this.trkInit.Margin = new System.Windows.Forms.Padding(2);
             this.trkInit.Maximum = 12;
             this.trkInit.Name = "trkInit";
@@ -106,7 +106,7 @@ namespace MemoryApp
             // 
             this.lblInV.AutoSize = true;
             this.lblInV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblInV.Location = new System.Drawing.Point(304, 41);
+            this.lblInV.Location = new System.Drawing.Point(343, 41);
             this.lblInV.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInV.Name = "lblInV";
             this.lblInV.Size = new System.Drawing.Size(39, 20);
@@ -117,17 +117,17 @@ namespace MemoryApp
             // 
             this.lblCards.AutoSize = true;
             this.lblCards.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblCards.Location = new System.Drawing.Point(11, 87);
+            this.lblCards.Location = new System.Drawing.Point(-2, 87);
             this.lblCards.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCards.Name = "lblCards";
-            this.lblCards.Size = new System.Drawing.Size(130, 20);
+            this.lblCards.Size = new System.Drawing.Size(187, 20);
             this.lblCards.TabIndex = 7;
-            this.lblCards.Text = "Cards show time:";
+            this.lblCards.Text = "Cards face up show time:";
             // 
             // trkCard
             // 
             this.trkCard.LargeChange = 2;
-            this.trkCard.Location = new System.Drawing.Point(150, 87);
+            this.trkCard.Location = new System.Drawing.Point(189, 87);
             this.trkCard.Margin = new System.Windows.Forms.Padding(2);
             this.trkCard.Minimum = 1;
             this.trkCard.Name = "trkCard";
@@ -140,7 +140,7 @@ namespace MemoryApp
             // 
             this.lblCardV.AutoSize = true;
             this.lblCardV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblCardV.Location = new System.Drawing.Point(304, 87);
+            this.lblCardV.Location = new System.Drawing.Point(343, 87);
             this.lblCardV.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCardV.Name = "lblCardV";
             this.lblCardV.Size = new System.Drawing.Size(43, 20);
@@ -160,7 +160,7 @@ namespace MemoryApp
             // nudWidth
             // 
             this.nudWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.nudWidth.Location = new System.Drawing.Point(277, 132);
+            this.nudWidth.Location = new System.Drawing.Point(312, 132);
             this.nudWidth.Maximum = new decimal(new int[] {
             1600,
             0,
@@ -194,7 +194,7 @@ namespace MemoryApp
             // nudHeight
             // 
             this.nudHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.nudHeight.Location = new System.Drawing.Point(277, 166);
+            this.nudHeight.Location = new System.Drawing.Point(312, 166);
             this.nudHeight.Maximum = new decimal(new int[] {
             900,
             0,
@@ -219,7 +219,7 @@ namespace MemoryApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 261);
+            this.ClientSize = new System.Drawing.Size(405, 261);
             this.Controls.Add(this.nudHeight);
             this.Controls.Add(this.lblBoardH);
             this.Controls.Add(this.nudWidth);

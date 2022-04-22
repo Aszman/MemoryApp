@@ -10,57 +10,39 @@ using System.Windows.Forms;
 
 namespace MemoryApp
 {
-    public partial class Settings : Form
+    public partial class frmSettings : Form
     {
-        static Settings instance = null;
+        private SettingsManager settingsManager;
         //states
         bool isSaved; //changes are up-to-date
         bool isStartup; // changes in layout are make by synchronizing values 
        
-        public int initShowTime = 15;  // in seconds, normally 15 now for dev is set 5;
-        public double cardsShowTime = 1.5;  // in seconds
-
-        public int boardWidth = 1080;
-        public const int boardWidthMax = 1600;
-        public const int boardWidthMin = 800;
-        
-        public int boardHeight = 720;
-        public const int boardHeightMax = 900;
-        public const int boardHeightMin = 600;
-
-        private Settings()
+        public frmSettings()
         {
+            settingsManager = SettingsManager.getInstance();
+
             InitializeComponent();
 
             //set maximum and minimum size of game's board
-            this.nudWidth.Maximum = boardWidthMax;
-            this.nudWidth.Minimum= boardWidthMin;
+            this.nudWidth.Maximum = SettingsManager.boardWidthMax;
+            this.nudWidth.Minimum = SettingsManager.boardWidthMin;
 
-            this.nudHeight.Maximum = boardHeightMax;
-            this.nudHeight.Minimum = boardHeightMin;
+            this.nudHeight.Maximum = SettingsManager.boardHeightMax;
+            this.nudHeight.Minimum = SettingsManager.boardHeightMin;
+
+            lblBoardW.Text = "Board's width (" + SettingsManager.boardWidthMin.ToString()
+                    + "-" + SettingsManager.boardWidthMax.ToString() + "):";
+
+            lblBoardH.Text = "Board's height (" + SettingsManager.boardHeightMin.ToString()
+            + "-" + SettingsManager.boardHeightMax.ToString() + "):";
         }
 
-        public static Settings getInstance()
-        {
-            if (instance == null)
-            {
-                instance = new Settings();
-            }
-
-            return instance;
-        }
 
         // loading form from memory
         private void Settings_Load(object sender, EventArgs e)
         {
             isStartup = true;
             isSaved = true;
-
-            lblBoardW.Text = "Board's width (" + boardWidthMin.ToString()
-                    + "-" + boardWidthMax.ToString() + "):";
-
-            lblBoardH.Text = "Board's height (" + boardHeightMin.ToString()
-            + "-" + boardHeightMax.ToString() + "):";
 
             loadValues();
 
@@ -87,38 +69,38 @@ namespace MemoryApp
             }
         }
 
-        // loads values from object variables
+        // loads values from manager variables
         private void loadValues()
         {
             // Initial show time
-            this.lblInV.Text = initShowTime.ToString() + " s";
-            this.trkInit.Value = initShowTime / 5;
+            this.lblInV.Text = settingsManager.initCardsShowTime.ToString() + " s";
+            this.trkInit.Value = settingsManager.initCardsShowTime / 5;
 
             // Cards show time
-            this.lblCardV.Text = cardsShowTime.ToString() + " s";
-            this.trkCard.Value = Convert.ToInt32(cardsShowTime * 2);
+            this.lblCardV.Text = settingsManager.cardsFaceUpShowTime.ToString() + " s";
+            this.trkCard.Value = Convert.ToInt32(settingsManager.cardsFaceUpShowTime * 2);
 
             //Board width
-            this.nudWidth.Value = boardWidth;
+            this.nudWidth.Value = settingsManager.boardWidth;
 
             //Board height
-            this.nudHeight.Value = boardHeight;
+            this.nudHeight.Value = settingsManager.boardHeight;
         }
 
-        // saves values from controls to variables inside form
+        // saves values from controls to variables inside manager
         private void saveSettings()
         {
             // Initial show time
-            initShowTime = trkInit.Value*5;
+            settingsManager.initCardsShowTime = trkInit.Value*5;
 
             // Cards show time
-            cardsShowTime = trkCard.Value/2.0;
+            settingsManager.cardsFaceUpShowTime = trkCard.Value/2.0;
 
             //Board width
-            boardWidth = Convert.ToInt32(this.nudWidth.Value);
+            settingsManager.boardWidth = Convert.ToInt32(this.nudWidth.Value);
 
             //Board height
-            boardHeight = Convert.ToInt32(this.nudHeight.Value);
+            settingsManager.boardHeight = Convert.ToInt32(this.nudHeight.Value);
 
                 
             this.isSaved = true; //successfull saving

@@ -1,7 +1,7 @@
 ﻿
 namespace MemoryApp
 {
-    partial class Game
+    partial class frmGame
     {
         /// <summary>
         /// Required designer variable.

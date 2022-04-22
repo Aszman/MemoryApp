@@ -1,7 +1,7 @@
 ﻿
 namespace MemoryApp
 {
-    partial class MainMenu
+    partial class frmMainMenu
     {
         /// <summary>
         /// Wymagana zmienna projektanta.

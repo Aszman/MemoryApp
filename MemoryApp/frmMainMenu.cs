@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace MemoryApp
 {
-    public partial class MainMenu : Form
+    public partial class frmMainMenu : Form
     {
-        readonly Settings settings;
-        HighScore highScore;
-        Game game;
+        frmSettings settingsForm;
+        frmHighScore highScore;
+        frmGame game;
 
         public enum Difficulties { EASY, NORMAL, HARD };
 
@@ -24,11 +24,12 @@ namespace MemoryApp
 
         Regex reg = new Regex("^[a-zA-Z0-9]*$");
 
-        public MainMenu()
+        public frmMainMenu()
         {
             InitializeComponent();
-            settings = Settings.getInstance(); //get global settings
-            highScore = HighScore.getInstance();
+            settingsForm = new frmSettings();
+            highScore = frmHighScore.getInstance();
+
             this.boxDiff.SelectedIndex = 1; // set selected difficulty to EASY
         }
 
@@ -56,7 +57,7 @@ namespace MemoryApp
         // open settings window
         private void btnSett_Click(object sender, EventArgs e)
         {
-            settings.ShowDialog();
+            settingsForm.ShowDialog();
         }
 
         // choosing difficulty
@@ -85,7 +86,7 @@ namespace MemoryApp
             playerName = txtName.Text;
 
             this.Hide();
-            game = new Game(this);
+            game = new frmGame(this);
             game.Show();
         }
 

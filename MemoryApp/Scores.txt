@@ -1,5 +1,7 @@
+marcin;8036
 fruit;7892
 jan;3450
+okokk;2098
 koala;2006
 kazik;1249
 aszman;1128
