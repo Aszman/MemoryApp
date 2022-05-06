@@ -54,6 +54,7 @@
     <Compile Include="frmHighScore.Designer.cs">
       <DependentUpon>frmHighScore.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManGame.cs" />
     <Compile Include="ManHighScore.cs" />
     <Compile Include="Score.cs" />
     <Compile Include="frmGame.cs">

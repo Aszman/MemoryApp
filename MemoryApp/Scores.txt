@@ -6,6 +6,7 @@ maniak;2100
 okokk;2098
 koala;2006
 khkh;1901
+jan;1490
 kazik;1249
 aszman;1128
 xyz;309
